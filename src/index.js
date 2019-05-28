@@ -1,12 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import "./style.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const position = [-12.0711245, -77.0868577];
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const map = (
+  <Map center={position} zoom={13}>
+    <TileLayer
+      attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    <Marker position={position}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
+  </Map>
+);
+
+render(map, document.getElementById("root"));
